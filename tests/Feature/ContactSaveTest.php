@@ -16,6 +16,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_unauthenticated_user_cannot_save_contact()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $contactData = [
             'name' => 'João Silva',
             'email' => 'joao@example.com',
@@ -32,6 +34,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_authenticated_user_can_save_new_contact()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $user = User::factory()->create();
         $this->actingAs($user);
 
@@ -54,6 +58,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_authenticated_user_can_update_existing_contact()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $user = User::factory()->create();
         $this->actingAs($user);
 
@@ -88,6 +94,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_validation_errors_for_invalid_data()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $user = User::factory()->create();
         $this->actingAs($user);
 
@@ -108,6 +116,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_email_must_be_unique()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $user = User::factory()->create();
         $this->actingAs($user);
 
@@ -130,6 +140,8 @@ class ContactSaveTest extends TestCase
      */
     public function test_contact_must_be_unique()
     {
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+    
         $user = User::factory()->create();
         $this->actingAs($user);
 
